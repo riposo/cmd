@@ -19,7 +19,7 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v2
         with:
-          push: false
+          load: true
           tags: |
             ghcr.io/riposo/cmd:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
