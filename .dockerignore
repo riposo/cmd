@@ -1,0 +1,8 @@
+/riposo
+go.mod
+go.sum
+plugins.go
+
+/.git
+/.github
+Makefile
