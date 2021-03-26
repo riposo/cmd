@@ -1,22 +1,6 @@
 #!/bin/bash
 
 set -e
-
-function usage() {
-    cat <<EOF
-To bundle plugins:
-    $0 PLUGIN...
-
-Example:
-    $0 accounts flush custom/repo test.host/custom/repo
-EOF
-}
-
-if [ -z "$1" ]; then
-  usage
-  exit 1
-fi
-
 output=bundle.go
 
 cat > $output <<EOF
