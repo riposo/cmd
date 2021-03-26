@@ -43,7 +43,9 @@ fi
 go mod init github.com/riposo/cmd
 
 # bundle
-./bundle.sh "$PLUGINS"
+if [ ! -z "$PLUGINS" ]; then
+  ./bundle.sh "$PLUGINS"
+fi
 
 # reference source path
 if [ -d "$SOURCE" ]; then

@@ -1,7 +1,7 @@
 /riposo
 go.mod
 go.sum
-plugins.go
+bundle.go
 
 /.git
 /.github
