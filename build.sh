@@ -32,13 +32,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# use GITHUB_TOKEN if set
-# TODO: remove after release
-if [ ! -z "$GITHUB_TOKEN" ]; then
-  go env -w GOPRIVATE=github.com/riposo
-  git config --global url."https://$GITHUB_TOKEN:x-oauth-basic@github.com/riposo".insteadOf "https://github.com/riposo"
-fi
-
 # init project
 go mod init github.com/riposo/cmd
 
