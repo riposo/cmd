@@ -12,9 +12,9 @@ docker run [DOCKER_RUN_OPTIONS]... ghcr.io/riposo/cmd [BUILD_OPTIONS]...
 
 Includes all [`go build` flags](https://golang.org/cmd/go/#hdr-Compile_packages_and_dependencies) and a number of custom options:
 
-* `--plugins` - specify the plugins to include in the build, accepts a comma-separated list of either core plugin IDs, github paths or full URLs.
-* `--source` - reference the container location of the riposo source
-* `--version` - specify a particular riposo version to build
+- `--plugins` - specify the plugins to include in the build, accepts a comma-separated list of either core plugin IDs, github paths or full URLs.
+- `--source` - reference the container location of the riposo source
+- `--version` - specify a particular riposo version to build
 
 ### Examples
 
@@ -32,8 +32,16 @@ Build custom version with plugins:
 
 ```shell
 docker run --rm --volume $(pwd):/dist ghcr.io/riposo/cmd \
-    --version v0.1.0 \
+    --version v0.2.0 \
     --plugins accounts,default-bucket,github/repo,test.domain/custom/repo \
+    -o /dist/riposo
+```
+
+Use custom plugin versions:
+
+```shell
+docker run --rm --volume $(pwd):/dist ghcr.io/riposo/cmd \
+    --plugins accounts@v0.2.0 \
     -o /dist/riposo
 ```
 

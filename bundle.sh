@@ -2,6 +2,7 @@
 
 set -e
 output=bundle.go
+modules=()
 
 cat > $output <<EOF
 package main
@@ -12,17 +13,24 @@ EOF
 
 for arg in "$@"
 do
-  for plugin in $(echo "$arg" | tr "," "\n")
+  for mod in $(echo "$arg" | tr "," "\n")
   do
-    if [[ $plugin =~ ^[-_[:alnum:]]*$ ]]; then
-      plugin="github.com/riposo/$plugin"
+    if [[ ! $mod =~ \/ ]]; then
+      mod="github.com/riposo/$mod"
     fi
-    if [[ $plugin =~ ^[-[:alnum:]]*\/ ]]; then
-      plugin="github.com/$plugin"
+    if [[ $mod =~ ^[-[:alnum:]]*\/ ]]; then
+      mod="github.com/$mod"
     fi
-    echo '	_ "'$plugin'"' >> $output
+    package=$(echo "$mod" | cut -d'@' -f 1)
+    echo '	_ "'$package'"' >> $output
+
+    modules+=($mod)
   done
 done
 echo ")" >> $output
 
 gofmt -w $output
+for mod in "${modules[@]}"
+do
+  go get $mod
+done

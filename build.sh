@@ -32,7 +32,8 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# init project
+# re-init project
+rm -f go.mod go.sum
 go mod init github.com/riposo/cmd
 
 # bundle
