@@ -27,7 +27,6 @@ jobs:
       - name: Test image
         run: |
           docker run --rm \
-            -e GITHUB_TOKEN=${{ secrets.PAT }} \
             -v $(pwd):/dist \
             ghcr.io/riposo/cmd:${{ github.sha }} \
               --plugins accounts,flush \
