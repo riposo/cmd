@@ -1,4 +1,4 @@
-FROM golang:1-buster
+FROM golang:1-bullseye
 
 WORKDIR /cmd/riposo
 COPY . /cmd/riposo
